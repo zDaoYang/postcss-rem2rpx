@@ -1,13 +1,13 @@
-# PostCSS rem2rpx 
+# PostCSS remtorpx 
 
-[PostCSS](https://github.com/zDaoYang/postcss-rem2rpx) postcss，css单位转换插件，将H5的rem单位转换为rpx，方便H5和小程序的代码通用
+[PostCSS](https://github.com/zDaoYang/postcss-remtorpx) postcss，css单位转换插件，将H5的rem单位转换为rpx，方便H5和小程序的代码通用
 
 基于 [postcss-pxtorem](https://github.com/cuth/postcss-pxtorem)。
 
 ## Install
 
 ```shell
-$ npm install postcss-rem2rpx --save-dev
+$ npm install postcss-remtorpx --save-dev
 ```
 
 
@@ -17,10 +17,10 @@ $ npm install postcss-rem2rpx --save-dev
 
 在config/index.js里的 mini.postcss 里添加 
 ```js
- 'postcss-rem2rpx': {
+ 'postcss-remtorpx': {
     enable: true,
     config: {
-      rem2rpxBase: 100  // rem 转 rpx 的比例
+      remtorpxBase: 100  // rem 转 rpx 的比例
     }
   },
 ```
@@ -63,7 +63,7 @@ h1 {
     replace: true,
     mediaQuery: false,
     minPixelValue: 0
-    rem2rpxBase: 100  // rem 转 rpx 的比例
+    remtorpxBase: 100  // rem 转 rpx 的比例
 }
 ```
 
@@ -97,5 +97,5 @@ Set the minimum pixel value to replace.
 
 
 ### 文件
-对于头部包含注释 `postcss-rem2rpx disable` 的文件，插件不予处理。
+对于头部包含注释 `postcss-remtorpx disable` 的文件，插件不予处理。
 

@@ -1,5 +1,5 @@
 {
-  "name": "postcss-rem2rpx",
+  "name": "postcss-remtorpx",
   "version": "1.0.0",
   "description": "PostCSS plugin rem 转 rpx单位",
   "main": "./libs/bundle.js",
@@ -11,18 +11,18 @@
     "postcss",
     "css",
     "postcss-plugin",
-    "rem2rpx"
+    "remtorpx"
   ],
   "author": "zdaoyang<zdaoyang@foxmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zDaoYang/postcss-rem2rpx"
+    "url": "https://github.com/zDaoYang/postcss-remtorpx"
   },
   "bugs": {
-    "url": "https://github.com/zDaoYang/postcss-rem2rpx/issues"
+    "url": "https://github.com/zDaoYang/postcss-remtorpx/issues"
   },
-  "homepage": "https://github.com/zDaoYang/postcss-rem2rpx#readme",
+  "homepage": "https://github.com/zDaoYang/postcss-remtorpx#readme",
   "dependencies": {
     "postcss": "^6.0.16"
   },
@@ -36,5 +36,8 @@
   },
   "jest": {
     "testEnvironment": "node"
-  }
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.com"
+ }
 }

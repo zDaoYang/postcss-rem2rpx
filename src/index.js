@@ -11,17 +11,17 @@ const defaults = {
   replace: true,
   mediaQuery: false,
   minPixelValue: 0,
-  rem2rpxBase: 100  // rem 转 rpx 的比例
+  remtorpxBase: 100  // rem 转 rpx 的比例
 }
 
 
 let targetUnit = 'rpx'
 
-module.exports = postcss.plugin('postcss-rem2rpx', function (options) {
+module.exports = postcss.plugin('postcss-remtorpx', function (options) {
 
   const opts = Object.assign({}, defaults, options)
   const onePxTransform = typeof options.onePxTransform === 'undefined' ? true : options.onePxTransform
-  const pxReplace = createPxReplace(opts.rem2rpxBase, opts.unitPrecision,
+  const pxReplace = createPxReplace(opts.remtorpxBase, opts.unitPrecision,
     opts.minPixelValue, onePxTransform)
 
   const satisfyPropList = createPropListMatcher(opts.propList)
@@ -29,7 +29,7 @@ module.exports = postcss.plugin('postcss-rem2rpx', function (options) {
   return function (css) {
     for (let i = 0; i < css.nodes.length; i++) {
       if (css.nodes[i].type === 'comment') {
-        if (css.nodes[i].text === 'postcss-rem2rpx disable') {
+        if (css.nodes[i].text === 'postcss-remtorpx disable') {
           return
         } else {
           break
@@ -112,7 +112,7 @@ module.exports = postcss.plugin('postcss-rem2rpx', function (options) {
 })
 
 
-function createPxReplace (rem2rpxBase, unitPrecision, minPixelValue, onePxTransform) {
+function createPxReplace (remtorpxBase, unitPrecision, minPixelValue, onePxTransform) {
   return function (m, $1) {
     console.error(m, $1)
     if (!$1) return m
@@ -122,7 +122,7 @@ function createPxReplace (rem2rpxBase, unitPrecision, minPixelValue, onePxTransf
     const rems = parseFloat($1)
 
     if (rems < minPixelValue) return m
-    const fixedVal = toFixed((rems * rem2rpxBase), unitPrecision)
+    const fixedVal = toFixed((rems * remtorpxBase), unitPrecision)
     console.error('===fixedVal===')
     console.error(fixedVal)
     return (fixedVal === 0) ? '0' : fixedVal + targetUnit
