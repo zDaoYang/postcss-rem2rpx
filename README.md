@@ -1,6 +1,6 @@
 # PostCSS rem2rpx 
 
-[PostCSS](https://github.com/zDaoYang/postcss-rem2rpx) postcss，css单位转换插件，将H5的rem单位转换为rpx，方便H5、和小程序的代码通用
+[PostCSS](https://github.com/zDaoYang/postcss-rem2rpx) postcss，css单位转换插件，将H5的rem单位转换为rpx，方便H5和小程序的代码通用
 
 基于 [postcss-pxtorem](https://github.com/cuth/postcss-pxtorem)。
 
