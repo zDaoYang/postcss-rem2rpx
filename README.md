@@ -2,7 +2,7 @@
 
 [PostCSS](https://github.com/zDaoYang/postcss-rem2rpx) postcss，css单位转换插件，将H5的rem单位转换为rpx，方便H5、和小程序的代码通用
 
-基于 [postcss-pxtorem](https://github.com/zDaoYang/postcss-rem2rpx)。
+基于 [postcss-pxtorem](https://github.com/cuth/postcss-pxtorem)。
 
 ## Install
 
@@ -10,89 +10,46 @@
 $ npm install postcss-rem2rpx --save-dev
 ```
 
+
 ## Usage
 
-### 小程序
+### taro框架
+
+在config/index.js里的 mini.postcss 里添加 
 ```js
-options = {
-    platform: 'weapp',
-    designWidth: 750,
-}
+ 'postcss-rem2rpx': {
+    enable: true,
+    config: {
+      rem2rpxBase: 100  // rem 转 rpx 的比例
+    }
+  },
 ```
 
-### H5
-```js
-options = {
-    platform: 'h5',
-    designWidth: 750,
-}
-```
-
-### RN
-```js
-options = {
-    platform: 'rn',
-    designWidth: 750,
-}
-```
 
 ### 输入/输出
 
-默认配置下，所有的 rem 都会被转换。
+默认配置下，所有的 rem 都会被转换，默认转换比例为100，px 和 rpx 单位不会被转换
 
 ```css
 /* input */
 h1 {
-    margin: 0 0 20px;
-    font-size: 32px;
+    margin: 0 0 0.2rem;
+    font-size: 0.32rem;
     line-height: 1.2;
     letter-spacing: 1px;
+    height: 20rpx;
 }
 
-/* weapp output */
+/*output */
 h1 {
     margin: 0 0 20rpx;
     font-size: 32rpx;
     line-height: 1.2;
-    letter-spacing: 1rpx;
+    letter-spacing: 1px;
+    height: 20rpx;
 }
 
-/* h5 output */
-h1 {
-    margin: 0 0 0.5rem;
-    font-size: 1rem;
-    line-height: 1.2;
-    letter-spacing: 0.025rem;
-}
 
-/* rn output */
-h1 {
-    margin: 0 0 10px;
-    font-size: 16px;
-    line-height: 1.2;
-    letter-spacing: 0.5px;
-}
-
-```
-
-### example
-
-```js
-var fs = require('fs');
-var postcss = require('postcss');
-var pxtorem = require('postcss-pxtransform');
-var css = fs.readFileSync('main.css', 'utf8');
-var options = {
-    replace: false
-};
-var processedCss = postcss(pxtorem(options)).process(css).css;
-
-fs.writeFile('main-rem.css', processedCss, function (err) {
-  if (err) {
-    throw err;
-  }
-  console.log('Rem file written.');
-});
 ```
 
 ## 配置 **options** 
@@ -106,22 +63,15 @@ fs.writeFile('main-rem.css', processedCss, function (err) {
     replace: true,
     mediaQuery: false,
     minPixelValue: 0
+    rem2rpxBase: 100  // rem 转 rpx 的比例
 }
 ```
-
-Type: `Object | Null`
-
-###  `platform` （String）（必填）
-`weapp` 或 `h5` 或 `rn`
-
-### `designWidth`（Number）（必填）
-`640` 或 `750` 或 `828`
 
 ### `unitPrecision` (Number) 
 The decimal numbers to allow the REM units to grow to.
 
 ### `propList` (Array) 
-The properties that can change from px to rem.
+The properties that can change from rem to rpx.
 
 - Values need to be exact matches.
 - Use wildcard `*` to enable all properties. Example: `['*']`
@@ -146,36 +96,6 @@ Allow px to be converted in media queries.
 Set the minimum pixel value to replace.
 
 
-## 忽略
-### 属性
-当前忽略单个属性的最简单的方法，就是 px 单位使用大写字母。
-
-```css
- /*`px` is converted to `rem`*/
-.convert {
-    font-size: 16px; // converted to 1rem
-}
-
- /* `Px` or `PX` is ignored by `postcss-pxtorem` but still accepted by browsers*/
-.ignore {
-    border: 1Px solid; // ignored
-    border-width: 2PX; // ignored
-}
-```
-
 ### 文件
-对于头部包含注释`/*postcss-pxtransform disable*/` 的文件，插件不予处理。
-
-## 剔除
-`/*postcss-pxtransform rn eject enable*/` 与 `/*postcss-pxtransform rn eject disable*/` 中间的代码，
-在编译成 RN 端的样式的时候，会被删除。建议将 RN 不支持的但 H5 端又必不可少的样式放到这里面。如：样式重制相关的代码。
-```css
-/*postcss-pxtransform rn eject enable*/
-
-.test {
-  color: black;
-}
-
-/*postcss-pxtransform rn eject disable*/
-```
+对于头部包含注释 `postcss-rem2rpx disable` 的文件，插件不予处理。
 
