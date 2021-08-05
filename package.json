@@ -1,0 +1,40 @@
+{
+  "name": "postcss-rem2rpx",
+  "version": "1.0.0",
+  "description": "PostCSS plugin rem 转 rpx单位",
+  "main": "./libs/bundle.js",
+  "scripts": {
+    "test": "jest",
+    "build": "rollup --config"
+  },
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "rem2rpx"
+  ],
+  "author": "zdaoyang<zdaoyang@foxmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zDaoYang/postcss-rem2rpx"
+  },
+  "bugs": {
+    "url": "https://github.com/zDaoYang/postcss-rem2rpx/issues"
+  },
+  "homepage": "https://github.com/zDaoYang/postcss-rem2rpx#readme",
+  "dependencies": {
+    "postcss": "^6.0.16"
+  },
+  "devDependencies": {
+    "rollup": "^2.7.2",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-uglify": "^6.0.4"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
